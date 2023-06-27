@@ -15,6 +15,7 @@ html {
   display: grid;
   place-items: center;
   width: 100vw;
+  /* width: fit-content; */
 }
 
 .header {
@@ -32,7 +33,7 @@ html {
   display: flex;
   flex-direction: column;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 15px;
-  margin-bottom: 3.6rem;
+  margin-bottom: 4rem;
 }
 
 .input {
@@ -49,13 +50,37 @@ html {
 
 .btn {
   align-self: center;
-  background-color: #5b04ba;
   border: none;
   color: #fff;
   font-size: 1.4rem;
   padding: 0.6rem 2rem;
   border-radius: 3px;
   cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-delete-all {
+  color: rgb(208, 4, 4);
+  background-color: white;
+  border: 1px solid rgb(208, 4, 4);
+}
+
+.btn-delete-all:hover {
+  background-color: rgb(203, 50, 50);
+  color: #fff;
+}
+
+.btn-add-item {
+  background-color: #5b04ba;
+}
+
+.btn-add-item:hover {
+  background-color: #7406ea;
+}
+
+.horizontal-line {
+  border: 1px solid rgba(199, 197, 197, 0.42);
+  margin-bottom: 3rem;
 }
 
 .task-list {
@@ -66,10 +91,27 @@ html {
   font-size: 1.6rem;
 }
 
+.list-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.2rem;
+}
+
+.select {
+  cursor: pointer;
+  padding: 0.6rem 0.8rem;
+}
+
 .task-list-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 5rem;
+}
+
+.checked {
+  text-decoration: line-through;
+  text-decoration-color: #5b04ba;
 }
 
 .description-checkbox-container {
