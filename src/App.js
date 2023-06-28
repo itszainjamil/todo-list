@@ -1,26 +1,27 @@
 import { useState, useEffect } from "react";
 
 function App() {
-  // const initialTasks = [
-  //   { description: "Task 1", id: 1 },
-  //   { description: "Task 2", id: 2 },
-  //   { description: "Task 3", id: 3 },
-  // ];
-
+  // Holds all the tasks
   const [tasksList, setTasksList] = useState([]);
+
+  // Used to edit a task
   const [currTask, setCurrTask] = useState(null);
+
+  // Handling checkbox
   function handleToggle(id) {
     setTasksList((list) =>
       list.map((task) =>
-        task.id === id ? { ...task, checked: !task.checked } : task
+        task.id === id ? { ...task, completed: !task.completed } : task
       )
     );
   }
 
+  // Deleteing a task
   function handleDelete(id) {
     setTasksList((list) => list.filter((item) => item.id !== id));
   }
 
+  // Delete all tasks
   function handleDeleteAll() {
     if (tasksList.length === 0) return;
     const confirmed = window.confirm(
@@ -69,13 +70,14 @@ function Header() {
 function FormAddTask({ setTasksList }) {
   const [task, setTask] = useState("");
 
+  // To add new task to the list
   function handleSubmit(e) {
     e.preventDefault();
     if (!task) return;
     const newTask = {
       description: task,
       id: crypto.randomUUID(),
-      checked: false,
+      completed: false,
     };
     setTasksList((list) => [...list, newTask]);
     setTask("");
@@ -104,15 +106,24 @@ function TaskList({
   handleDeleteAll,
   setCurrTask,
 }) {
+  // Sorting
   const [sortBy, setSortBy] = useState("input");
+
+  // Creating a list variable to update the list according to 'sortBy'
   let list;
+
+  // Default - Sort by input order
   if (sortBy === "input") list = tasksList;
+
+  // Sort alphabetically
   if (sortBy === "description")
     list = tasksList
       .slice()
       .sort((a, b) => a.description.localeCompare(b.description));
+
+  // Sort by completed status
   if (sortBy === "status")
-    list = tasksList.slice().sort((a, b) => a.checked - b.checked);
+    list = tasksList.slice().sort((a, b) => a.completed - b.completed);
 
   return (
     <div>
@@ -124,7 +135,7 @@ function TaskList({
           className="select"
         >
           <option value="input">Sort by input</option>
-          <option value="status">Sort by status</option>
+          <option value="status">Sort by completed status</option>
           <option value="description">Sort by description</option>
         </select>
         <button onClick={handleDeleteAll} className="btn btn-delete-all">
@@ -146,6 +157,7 @@ function TaskList({
     </div>
   );
 }
+
 // TASK ITEM
 
 function TaskItem({ task, handleToggle, handleDelete, setCurrTask }) {
@@ -153,7 +165,7 @@ function TaskItem({ task, handleToggle, handleDelete, setCurrTask }) {
     <li className="task-list-item">
       <div className="description-checkbox-container">
         <input
-          value={task.checked}
+          value={task.completed}
           onChange={() => {
             handleToggle(task.id);
           }}
@@ -161,10 +173,12 @@ function TaskItem({ task, handleToggle, handleDelete, setCurrTask }) {
           type="checkbox"
         />
 
-        <p className={`${task.checked ? "checked" : ""}`}>{task.description}</p>
+        <p className={`${task.completed ? "checked" : ""}`}>
+          {task.description}
+        </p>
       </div>
       <div className="actions-container">
-        {!task.checked && (
+        {!task.completed && (
           <i
             onClick={() => setCurrTask(task)}
             className="edit-icon fa-sharp fa-solid fa-pen"
@@ -183,10 +197,12 @@ function TaskItem({ task, handleToggle, handleDelete, setCurrTask }) {
 
 // MODAL
 function Modal({ currTask, setCurrTask, setTasksList }) {
+  // Modal input
   const [updatedDescription, setUpdatedDescription] = useState(
     currTask.description
   );
 
+  // To update the task
   function handleUpdateTask(e) {
     e.preventDefault();
 
@@ -200,17 +216,23 @@ function Modal({ currTask, setCurrTask, setTasksList }) {
     setCurrTask(null);
   }
 
+  // To close the modal window
   function closeModal(e) {
     e.preventDefault();
     setCurrTask(null);
   }
 
+  // To handle ENTER and ESCAPE key event
   function handleKeyDown(e) {
+    // Close modal on ESCAPE key
     if (e.keyCode === 27) closeModal(e);
     // if (e.key === "Escape") closeModal(e);
+
+    // Update the task on ENTER key
     if (e.keyCode === 17) handleUpdateTask(e);
   }
 
+  // Event listener for key press
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
   });
@@ -238,29 +260,4 @@ function Modal({ currTask, setCurrTask, setTasksList }) {
       <div onClick={closeModal} className="overlay"></div>
     </>
   );
-  // return (
-  //   <>
-  //     <div onKeyDown={handleKeyDown} className="modal">
-  //       <form className="form form-update-task">
-  //         <div>
-  //           <h3 className="heading-update-item">Update Task</h3>
-  //           <button onClick={closeModal} className="btn-close-modal">
-  //             &times;
-  //           </button>
-  //         </div>
-  //         <input
-  //           className="input"
-  //           type="text"
-  //           placeholder="Enter updated task"
-  //           value={updatedDescription}
-  //           onChange={(e) => setUpdatedDescription(e.target.value)}
-  //         />
-  //         <button onClick={handleUpdateTask} className="btn btn-add-item">
-  //           Update
-  //         </button>
-  //       </form>
-  //     </div>
-  //     <div className="overlay"></div>
-  //   </>
-  // );
 }

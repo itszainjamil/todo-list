@@ -17,6 +17,8 @@ html {
   width: 100%;
 }
 
+/* HEADER */
+
 .header {
   background-color: #5b04ba;
   color: #fff;
@@ -26,6 +28,7 @@ html {
   margin-bottom: 2rem;
 }
 
+/* Form Styling  */
 .form {
   width: 50rem;
   padding: 1.2rem;
@@ -33,12 +36,14 @@ html {
   flex-direction: column;
 }
 
+/* FORM: Add task */
 .form-add-task {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 15px;
   gap: 1.4rem;
   margin-bottom: 4rem;
 }
 
+/* Input Field Styling */
 .input {
   padding: 1rem;
   font-size: 1.4rem;
@@ -51,6 +56,7 @@ html {
   outline: 1px solid rgba(165, 165, 165, 0.528);
 }
 
+/* BUTTON */
 .btn {
   align-self: center;
   border: none;
@@ -62,6 +68,7 @@ html {
   font-weight: 500;
 }
 
+/* Button: Delete all */
 .btn-delete-all {
   color: rgb(208, 4, 4);
   background-color: white;
@@ -73,6 +80,7 @@ html {
   color: #fff;
 }
 
+/* Button: Add item */
 .btn-add-item {
   background-color: #5b04ba;
 }
@@ -81,11 +89,13 @@ html {
   background-color: #7406ea;
 }
 
+/* Horizontal line after form-add-task */
 .horizontal-line {
   border: 1px solid rgba(199, 197, 197, 0.42);
   margin-bottom: 3rem;
 }
 
+/* Tasks List */
 .task-list {
   width: 70rem;
   display: flex;
@@ -94,17 +104,20 @@ html {
   font-size: 1.6rem;
 }
 
+/* Container for Delete all btn and Select field */
 .list-actions {
   display: flex;
   justify-content: space-between;
   margin-bottom: 2.2rem;
 }
 
+/* Select input field */
 .select {
   cursor: pointer;
   padding: 0.6rem 0.8rem;
 }
 
+/* Each list item */
 .task-list-item {
   display: flex;
   align-items: center;
@@ -112,11 +125,13 @@ html {
   gap: 5rem;
 }
 
+/* Line through text if task is completed */
 .checked {
   text-decoration: line-through;
   text-decoration-color: #5b04ba;
 }
 
+/* Container for task description and checkbox */
 .description-checkbox-container {
   display: flex;
   align-items: center;
@@ -132,6 +147,7 @@ html {
   cursor: pointer;
 }
 
+/* Edit and Delete buttons container */
 .actions-container {
   display: flex;
   gap: 1.4rem;
@@ -143,6 +159,7 @@ html {
   color: #444;
 }
 
+/* MODAL */
 .modal {
   border: none;
   padding: 1rem;
@@ -154,6 +171,7 @@ html {
   background-color: #fff;
 }
 
+/* Overlay behind modal window */
 .overlay {
   position: absolute;
   top: 0;
@@ -165,14 +183,11 @@ html {
   z-index: 5;
 }
 
-.hidden {
-  display: none;
-}
-
 .form-update-task {
   gap: 1.6rem;
 }
 
+/* Container for Modal heading and Close button */
 .modal-header {
   padding: 0 1.4rem;
   display: flex;
