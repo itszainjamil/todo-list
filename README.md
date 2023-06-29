@@ -12,3 +12,5 @@ This is a small project I did to practice some fundamentals of React.
 - Delete all tasks at once using the 'Delete All' button
 
 **This app is not responsive for mobiles**
+
+Check it out live [here!](https://todo-react-app-zen.netlify.app/)
